@@ -4,7 +4,7 @@ from transformers import pipeline
 
 app = FastAPI(
     title="Summarization API",
-    description="Using t5-small with automatic download",
+    description="Using t5-small",
     version="1.0"
 )
 
@@ -20,8 +20,8 @@ class TextInput(BaseModel):
 def summarize(data: TextInput):
     result = summarizer(
         data.text,
-        max_length=120,
-        min_length=20,
+        max_length=60,
+        min_length=10,
         do_sample=False
     )
     return {"summary": result[0]["summary_text"]}
